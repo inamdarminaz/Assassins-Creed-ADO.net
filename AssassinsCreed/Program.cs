@@ -20,7 +20,8 @@ namespace AssassinsCreed
                     Console.WriteLine("4.Update a Character");
                     Console.WriteLine("5.Search a Character");
                     Console.WriteLine("6. Number of Assassins in the creed");
-                    Console.WriteLine("7.Display  all Templars\n");
+                    Console.WriteLine("7.Display data in disconnected arch");
+                    Console.WriteLine("8.Display  all Templars\n");
                     int choice = Convert.ToInt32(Console.ReadLine());
                     switch (choice)
                     {
@@ -57,8 +58,15 @@ namespace AssassinsCreed
                         case 6:
                             a.CountCharacters();
                             break;
+                        
                         case 7:
+                            a.RetrieveAllAssassinsDisconnected();
+                            break;
+                        case 8:
                             a.DisplayTemplars();
+                            break;
+                        default:
+                            Console.WriteLine("Invalid Chhoice");
                             break;
                     }
                     Console.WriteLine("\nDo you want to continue? y/n");

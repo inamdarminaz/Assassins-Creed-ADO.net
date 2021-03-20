@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Data.SqlClient;
 using System.Configuration;
+using System.Data;
 
 namespace AssassinsCreed
 {
@@ -21,6 +22,30 @@ namespace AssassinsCreed
                 while (reader.Read())
                 {
                     Console.WriteLine("{0}\t\t{1}\t\t\t{2}\t\t{3}", reader[0], reader[1], reader[2], reader[3]);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                con.Close();
+            }
+        }
+
+        public void RetrieveAllAssassinsDisconnected()
+        {
+            try
+            {
+                Console.WriteLine("DISPLAYING THROUGH DISCONNECTED ARCHITECTURE");
+                SqlDataAdapter da = new SqlDataAdapter("select * from assassins", con);
+                con.Open();
+                DataSet ds = new DataSet();
+                da.Fill(ds, "assassins");
+                foreach (DataRow aRow in ds.Tables["assassins"].Rows)
+                {
+                    Console.WriteLine("{0}\t\t{1}\t\t\t{2}\t\t{3}", aRow["assassinId"], aRow["assassinName"], aRow["profile"], aRow["series"]);
                 }
             }
             catch (Exception ex)
